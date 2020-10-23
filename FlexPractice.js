@@ -9,10 +9,14 @@ export default function App() {
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
+      flexWrap: "wrap",
+      alignContent: "center", // only works with wrapping
     }}>
       <View style={{
         backgroundColor: "dodgerblue",
-        width: 100,
+        flexBasis: 100, // can map to width or heigth
+        flex: 1, // same as flexGrow
+        // width: 100,
         height: 100,
       }}/>
       <View style={{
