@@ -22,6 +22,9 @@ export default function MessagesScreen() {
     return (
         <Screen>
             <FlatList 
+                ItemSeparatorComponent={() => 
+                    <View />
+                }
                 data={messages}
                 keyExtractor={message => message.id.toString()}
                 renderItem={({ item }) => 
