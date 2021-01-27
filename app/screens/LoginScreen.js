@@ -9,6 +9,7 @@ import AppButton from '../components/AppButton'
 import ErrorMessage from '../components/ErrorMessage'
 import AppFormField from '../components/AppFormField'
 import SubmitButton from '../components/SubmitButton'
+import AppForm from '../components/AppForm'
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -22,35 +23,31 @@ export default function LoginScreen() {
                 source={require('../assets/logo-red.png')} 
                 style={styles.logo}
                 />
-            <Formik
+            <AppForm
                 initialValues={{ email: '', password: ''}}
                 onSubmit={(values) => console.log(values)}
                 validationSchema={validationSchema}
             >
-                { () => (
-                    <>
-                        <AppFormField 
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            icon="email"
-                            keyboardType="email-address"
-                            name="email"
-                            placeholder="Email"
-                            textContentType="emailAddress" //iOS only - lets iOS autofill from keychain
-                        />
-                        <AppFormField
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            icon="lock"
-                            name="password"
-                            placeholder="Password"
-                            secureTextEntry
-                            textContentType="password"
-                        />
-                        <SubmitButton title="Login" />
-                    </>
-                )}
-            </Formik>
+                <AppFormField 
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    icon="email"
+                    keyboardType="email-address"
+                    name="email"
+                    placeholder="Email"
+                    textContentType="emailAddress" //iOS only - lets iOS autofill from keychain
+                />
+                <AppFormField
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    icon="lock"
+                    name="password"
+                    placeholder="Password"
+                    secureTextEntry
+                    textContentType="password"
+                />
+                <SubmitButton title="Login" />   
+            </AppForm>
         </Screen>
     )
 }
