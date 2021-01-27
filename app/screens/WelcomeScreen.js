@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ImageBackground, StyleSheet, Image, Text } from 'react-native';
+
 import AppButton from '../components/AppButton';
 
 export default function WelcomeScreen() {
