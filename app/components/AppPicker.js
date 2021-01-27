@@ -7,7 +7,7 @@ import AppTextInput from './AppTextInput'
 import Screen from './Screen'
 import PickerItem from './PickerItem'
 
-export default function AppPicker({ icon, placeholder, items }) {
+export default function AppPicker({ icon, placeholder, items, onSelectItem, selectedItem }) {
     const [ modalVisible, setModalVisible ] = useState(false)
 
     return (
@@ -27,7 +27,7 @@ export default function AppPicker({ icon, placeholder, items }) {
                         size={20} 
                         color={defaultStyles.colors.medium} 
                     />
-                    <AppTextInput style={styles.text}>{placeholder}</AppTextInput>
+                    <AppTextInput style={styles.text}>{selectedItem ? selectedItem.label : placeholder}</AppTextInput>
                 </View>
             </TouchableWithoutFeedback>
             <Modal visible={modalVisible} animationType="slide">
@@ -36,7 +36,15 @@ export default function AppPicker({ icon, placeholder, items }) {
                     <FlatList 
                         data={items}
                         keyExtractor={(item) => item.value.toString()}
-                        renderItem={({ item }) => <PickerItem label={item.label} onPress={() => console.log(item)}/>}
+                        renderItem={({ item }) => (
+                            <PickerItem 
+                                label={item.label} 
+                                onPress={() => {
+                                    onSelectItem(item)
+                                    setModalVisible(false)
+                                }}
+                            />
+                        )}
                     />
                 </Screen>
             </Modal>
