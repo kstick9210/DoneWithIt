@@ -11,8 +11,10 @@ import AppText from './AppText'
 export default function AppPicker({ 
     icon, 
     placeholder, 
-    items, 
-    onSelectItem, 
+    items,
+    numberOfColumns = 1,
+    onSelectItem,
+    PickerItemComponent = PickerItem,
     selectedItem, 
     width = "100%"
 }) {
@@ -48,8 +50,10 @@ export default function AppPicker({
                     <FlatList 
                         data={items}
                         keyExtractor={(item) => item.value.toString()}
+                        numColumns={numberOfColumns}
                         renderItem={({ item }) => (
-                            <PickerItem 
+                            <PickerItemComponent 
+                                item={item}
                                 label={item.label} 
                                 onPress={() => {
                                     onSelectItem(item)
