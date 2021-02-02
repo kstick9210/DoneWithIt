@@ -6,6 +6,7 @@ import defaultStyles from '../config/styles'
 import AppTextInput from './AppTextInput'
 import Screen from './Screen'
 import PickerItem from './PickerItem'
+import AppText from './AppText'
 
 export default function AppPicker({ icon, placeholder, items, onSelectItem, selectedItem }) {
     const [ modalVisible, setModalVisible ] = useState(false)
@@ -22,12 +23,16 @@ export default function AppPicker({ icon, placeholder, items, onSelectItem, sele
                             style={styles.icon} 
                         />
                     }
+                    { selectedItem ? (
+                        <AppText style={styles.text}>{selectedItem.label}</AppText>
+                    ) : (
+                        <AppText style={styles.placeholder}>{placeholder}</AppText>
+                    )}
                     <MaterialCommunityIcons 
                         name="chevron-down" 
                         size={20} 
                         color={defaultStyles.colors.medium} 
                     />
-                    <AppTextInput style={styles.text}>{selectedItem ? selectedItem.label : placeholder}</AppTextInput>
                 </View>
             </TouchableWithoutFeedback>
             <Modal visible={modalVisible} animationType="slide">
@@ -65,6 +70,10 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     text: {
+        flex: 1
+    },
+    placeholder: {
+        color: defaultStyles.colors.medium,
         flex: 1
     }
 })
