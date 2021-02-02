@@ -8,11 +8,7 @@ export default function AppForm({ initalValues, onSubmit, validationSchema, chil
             onSubmit={onSubmit}
             validationSchema={validationSchema}
         >
-            {() => (
-                <>
-                    {children}
-                </>
-            )}
+            {() => <>{children}</>}
         </Formik>
     )
 }
