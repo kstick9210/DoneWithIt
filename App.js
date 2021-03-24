@@ -41,23 +41,38 @@ const Account = () => (
   </Screen>
 )
 
+const Stack = createStackNavigator(); // Stack is an object with properties that are React components
+const StackNavigator = () => (
+  <Stack.Navigator 
+    initialRouteName="Tweets"
+    screenOptions={{
+      headerStyle: { backgroundColor: 'dodgerblue' },
+        headerTintColor: 'whitesmoke',
+    }}
+  >
+    <Stack.Screen 
+      name="TweetDetails" 
+      component={TweetDetails}
+      options={({ route }) => ({ title: route.params.id })} //dynamically set title of page
+    />
+    <Stack.Screen 
+      name="Tweets" 
+      component={Tweets}
+      options={{
+        headerStyle: { backgroundColor: 'tomato' },
+        headerTintColor: 'white',
+      }}
+    />
+  </Stack.Navigator>
+)
+
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
   <Tab.Navigator
-    tabBarOptions={{
-      activeBackgroundColor: 'tomato',
-      activeTintColor: 'white',
-      inactiveBackgroundColor: 'lightgrey',
-      inactiveTintColor: 'black'
-    }}
   >
     <Tab.Screen 
       name="Feed" 
-      component={Tweets} 
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <MaterialCommunityIcons name="home" size={size} color={color}/> //size prop is suggested size from react navigator, color comes from tabBarOptions object
-        )}}
+      component={StackNavigator} 
     />
     <Tab.Screen 
       name="Account" 
@@ -67,30 +82,6 @@ const TabNavigator = () => (
 )
 
 export default function App() {
-  const Stack = createStackNavigator(); // Stack is an object with properties that are React components
-  const StackNavigator = () => (
-    <Stack.Navigator 
-      initialRouteName="Tweets"
-      screenOptions={{
-        headerStyle: { backgroundColor: 'dodgerblue' },
-          headerTintColor: 'whitesmoke',
-      }}
-    >
-      <Stack.Screen 
-        name="TweetDetails" 
-        component={TweetDetails}
-        options={({ route }) => ({ title: route.params.id })} //dynamically set title of page
-      />
-      <Stack.Screen 
-        name="Tweets" 
-        component={Tweets}
-        options={{
-          headerStyle: { backgroundColor: 'tomato' },
-          headerTintColor: 'white',
-        }}
-      />
-    </Stack.Navigator>
-  )
 
   return (
     <NavigationContainer>
