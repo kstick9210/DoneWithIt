@@ -36,13 +36,26 @@ const TweetDetails = ({ route }) => (
 export default function App() {
   const Stack = createStackNavigator(); // Stack is an object with properties that are React components
   const StackNavigator = () => (
-    <Stack.Navigator initialRouteName="Tweets">
+    <Stack.Navigator 
+      initialRouteName="Tweets"
+      screenOptions={{
+        headerStyle: { backgroundColor: 'dodgerblue' },
+          headerTintColor: 'whitesmoke',
+      }}
+    >
       <Stack.Screen 
         name="TweetDetails" 
         component={TweetDetails}
         options={({ route }) => ({ title: route.params.id })} //dynamically set title of page
       />
-      <Stack.Screen name="Tweets" component={Tweets}/>
+      <Stack.Screen 
+        name="Tweets" 
+        component={Tweets}
+        options={{
+          headerStyle: { backgroundColor: 'tomato' },
+          headerTintColor: 'white',
+        }}
+      />
     </Stack.Navigator>
   )
 
